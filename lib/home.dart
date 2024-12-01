@@ -17,42 +17,50 @@ class HomePage extends StatelessWidget {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            BlocListener<Counter, int>(
+            BlocConsumer<Counter, int>(
               bloc: counter,
+              builder: (context, state) {
+                return Text(
+                  '$state',
+                  style: const TextStyle(fontSize: 50),
+                );
+              },
               listener: (context, state) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
+                    duration: Duration(seconds: 1),
                     content: Text('Testing'),
                   ),
                 );
               },
-              listenWhen: (previous, current) {
-                if (current % 2 == 0) {
-                  return true;
-                } else {
-                  return false;
-                }
-              },
-              child: BlocBuilder<Counter, int>(
-                bloc: counter,
-                builder: (context, state) {
-                  return Text(
-                    '$state',
-                    style: const TextStyle(fontSize: 50),
-                  );
-                },
-              ),
+              listenWhen: (previous, current) => current % 2 == 0,
+              buildWhen: (previous, current) => current % 2 == 0,
             ),
-
-            // StreamBuilder(
-            //   initialData: counter.init,
-            //   stream: counter.stream,
-            //   builder: (context, snapshot) {
-            //     return Text(
-            //       '${snapshot.data}',
-            //       style: const TextStyle(fontSize: 50),
+            // BlocListener<Counter, int>(
+            //   bloc: counter,
+            //   listener: (context, state) {
+            //     ScaffoldMessenger.of(context).showSnackBar(
+            //       const SnackBar(
+            //         content: Text('Testing'),
+            //       ),
             //     );
             //   },
+            //   listenWhen: (previous, current) {
+            //     if (current % 2 == 0) {
+            //       return true;
+            //     } else {
+            //       return false;
+            //     }
+            //   },
+            //   child: BlocBuilder<Counter, int>(
+            //     bloc: counter,
+            //     builder: (context, state) {
+            //       return Text(
+            //         '$state',
+            //         style: const TextStyle(fontSize: 50),
+            //       );
+            //     },
+            //   ),
             // ),
             const SizedBox(
               height: 20,
