@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learn_bloc/bloc/counter.dart';
 import 'package:learn_bloc/home.dart';
+import 'package:learn_bloc/injection_bloc/injection.dart';
 import 'package:learn_bloc/provider.dart';
 
 void main() {
@@ -15,9 +16,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => Counter(),
+      create: (context) => Counter(), // Injection class Counter
       child: MaterialApp(
-        home: ProviderHome(),
+        home: InjectionHome(),
       ),
     );
   }
