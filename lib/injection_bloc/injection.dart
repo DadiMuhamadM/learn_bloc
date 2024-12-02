@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learn_bloc/bloc/counter.dart';
 import 'package:learn_bloc/injection_bloc/merah.dart';
+import 'package:learn_bloc/provider%20value/provider_value.dart';
 
 class InjectionHome extends StatelessWidget {
   InjectionHome({super.key});
@@ -16,6 +17,25 @@ class InjectionHome extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Injection Bloc'),
         centerTitle: true,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) {
+                return BlocProvider.value(
+                  value: myCounter,
+                  child: const ProviderValue(),
+                );
+                // return BlocProvider(
+                //   create: (context) => myCounter,
+                //   child: const ProviderValue(),
+                // );
+              },
+            ),
+          );
+        },
+        child: const Icon(Icons.arrow_forward_ios),
       ),
       body: Center(
         child: Row(
@@ -43,7 +63,7 @@ class InjectionHome extends StatelessWidget {
               ),
             ),
             // Widget data counter
-            Merah(),
+            const Merah(),
 
             // Button +
             Material(

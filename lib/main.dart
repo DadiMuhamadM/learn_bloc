@@ -15,10 +15,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => Counter(), // Injection class Counter
-      child: MaterialApp(
-        home: InjectionHome(),
+    return MaterialApp(
+      home: BlocProvider(
+        create: (context) => Counter(),
+        child: InjectionHome(),
       ),
     );
   }
