@@ -20,20 +20,21 @@ class InjectionHome extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) {
-                return BlocProvider.value(
-                  value: myCounter,
-                  child: const ProviderValue(),
-                );
-                // return BlocProvider(
-                //   create: (context) => myCounter,
-                //   child: const ProviderValue(),
-                // );
-              },
-            ),
-          );
+          // Navigator.of(context).push(
+          //   MaterialPageRoute(
+          //     builder: (context) {
+          //       return BlocProvider.value(
+          //         value: myCounter,
+          //         child: const ProviderValue(),
+          //       );
+          //       // return BlocProvider(
+          //       //   create: (context) => myCounter,
+          //       //   child: const ProviderValue(),
+          //       // );
+          //     },
+          //   ),
+          // );
+          Navigator.of(context).pushNamed('/provider-value');
         },
         child: const Icon(Icons.arrow_forward_ios),
       ),

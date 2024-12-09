@@ -4,22 +4,38 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learn_bloc/bloc/counter.dart';
 import 'package:learn_bloc/home.dart';
 import 'package:learn_bloc/injection_bloc/injection.dart';
+import 'package:learn_bloc/provider%20value/provider_value.dart';
 import 'package:learn_bloc/provider.dart';
+import 'package:learn_bloc/routes/route.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
 
+  final router = MyRouter();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: BlocProvider(
-        create: (context) => Counter(),
-        child: InjectionHome(),
-      ),
+      // home: BlocProvider(
+      //   create: (context) => Counter(),
+      //   child: InjectionHome(),
+      // ),
+
+      // initialRoute: '/',
+      // routes: {
+      //   "/": (context) => BlocProvider.value(
+      //         value: myCounter,
+      //         child: InjectionHome(),
+      //       ),
+      //   "/provider-value": (context) => BlocProvider.value(
+      //         value: myCounter,
+      //         child: const ProviderValue(),
+      //       ),
+      // },
+      onGenerateRoute: router.onGenerateRoute,
     );
   }
 }
